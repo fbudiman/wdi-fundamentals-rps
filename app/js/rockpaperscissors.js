@@ -43,17 +43,17 @@ function getWinner(playerMove,computerMove) {
     if (playerMove === computerMove) {
         winner = "tie";
     } else if (playerMove === "rock" && computerMove === "paper") {
-        winner = "computer";
+        winner = "Computer";
     } else if (playerMove === "rock" && computerMove === "scissors") {
-        winner = "player";
+        winner = "Player";
     } else if (playerMove === "paper" && computerMove === "rock") {
-        winner = "player";
+        winner = "Player";
     } else if (playerMove === "paper" && computerMove === "scissors") {
-        winner = "computer";
+        winner = "Computer";
     } else if (playerMove === "scissors" && computerMove === "rock") {
-        winner = "computer";
+        winner = "Computer";
     } else if (playerMove === "scissors" && computerMove === "paper") {
-        winner = "player";
+        winner = "Player";
     }
     return winner;
 }
@@ -62,8 +62,71 @@ function playToFive() {
     console.log("Let's play Rock, Paper, Scissors");
     var playerWins = 0;
     var computerWins = 0;
+
     // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
-    /* YOUR CODE HERE */
+    
+    while (playerWins < 5 && computerWins < 5) {
+
+        var playerMove = getPlayerMove();
+        var computerMove = getComputerMove();
+        var roundWinner = getWinner (playerMove, computerMove);
+
+        if (roundWinner === "tie") {
+            console.log ("You chose " + playerMove + " and Computer chose " + computerMove + ". This round is a tie.");
+        } else if (roundWinner === "Player") {
+            playerWins += 1;
+            console.log ("You chose " + playerMove + " and Computer chose " + computerMove + ". " + roundWinner + " wins this round.");
+        } else if (roundWinner === "Computer") {
+            computerWins += 1;
+            console.log ("You chose " + playerMove + " and Computer chose " + computerMove + ". " + roundWinner + " wins this round.");
+        } else {
+            console.log ("Error. Are you sure you entered 'rock', 'paper', or 'scissors'?");
+        }
+        
+        console.log ("The score is currently " + playerWins + " (you) to " + computerWins + " (computer).");
+    }
+
+    if (playerWins === 5) {
+        console.log ("You win against the computer!");
+    } else if (computerWins === 5){
+        console.log ("Aww the computer beat you :(");
+    }
+
     return [playerWins, computerWins];
 }
 
+function playTo(x) {
+console.log("Let's play Rock, Paper, Scissors");
+    
+var playerWins = 0;
+var computerWins = 0;
+   
+    while (playerWins < x && computerWins < x) {
+
+        var playerMove = getPlayerMove();
+        var computerMove = getComputerMove();
+        var roundWinner = getWinner (playerMove, computerMove);
+
+        if (roundWinner === "tie") {
+            console.log ("You chose " + playerMove + " and Computer chose " + computerMove + ". This round is a tie.");
+        } else if (roundWinner === "Player") {
+            playerWins += 1;
+            console.log ("You chose " + playerMove + " and Computer chose " + computerMove + ". " + roundWinner + " wins this round.");
+        } else if (roundWinner === "Computer") {
+            computerWins += 1;
+            console.log ("You chose " + playerMove + " and Computer chose " + computerMove + ". " + roundWinner + " wins this round.");
+        } else {
+            console.log ("Error. Are you sure you entered 'rock', 'paper', or 'scissors'?");
+        }
+        
+        console.log ("The score is currently " + playerWins + " (you) to " + computerWins + " (computer).");
+    }
+
+    if (playerWins === x) {
+        console.log ("You win against the computer!");
+    } else if (computerWins === x){
+        console.log ("Aww the computer beat you :(");
+    }
+
+    return [playerWins, computerWins];
+}
